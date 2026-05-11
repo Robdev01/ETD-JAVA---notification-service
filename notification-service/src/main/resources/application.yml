@@ -1,0 +1,40 @@
+spring:
+
+  application:
+    name: notification-service
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+
+    listener:
+      simple:
+
+        # quantidade mínima de consumers
+        concurrency: 1
+
+        # quantidade máxima de consumers
+        max-concurrency: 5
+
+        # quantidade de mensagens por vez
+        prefetch: 1
+
+        # retry automático
+        retry:
+          enabled: true
+          initial-interval: 3s
+          max-attempts: 3
+          multiplier: 2
+
+server:
+  port: 8080
+
+logging:
+
+  level:
+    org.springframework.amqp: INFO
+
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"

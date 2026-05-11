@@ -9,5 +9,5 @@ public record EmailResponseDTO(
         String protocolo
 
     ) {
-    
+
 }
