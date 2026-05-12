@@ -23,7 +23,43 @@ public class QueueConfig {
 
         return QueueBuilder
                 .durable(RabbitMQConstants.FILA_EMAIL)
+
+                .deadLetterExchange(
+                        RabbitMQConstants.EXCHANGE_EMAIL_DLQ
+                )
+
+                .deadLetterRoutingKey(
+                        RabbitMQConstants.ROUTING_KEY_EMAIL_DLQ
+                )
+
                 .build();
+    }
+
+    @Bean
+    public Queue filaEmailDLQ() {
+
+        return QueueBuilder
+                .durable(RabbitMQConstants.FILA_EMAIL_DLQ)
+                .build();
+    }
+
+    @Bean
+    public DirectExchange exchangeEmailDLQ() {
+
+        return new DirectExchange(
+                RabbitMQConstants.EXCHANGE_EMAIL_DLQ
+        );
+    }
+
+    @Bean
+    public Binding bindingEmailDLQ() {
+
+        return BindingBuilder
+                .bind(filaEmailDLQ())
+                .to(exchangeEmailDLQ())
+                .with(
+                        RabbitMQConstants.ROUTING_KEY_EMAIL_DLQ
+                );
     }
 
     @Bean

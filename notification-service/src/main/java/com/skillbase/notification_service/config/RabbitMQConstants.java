@@ -9,5 +9,12 @@ public class RabbitMQConstants {
 
     public static final String ROUTING_KEY_EMAIL = "routing.email";
 
+    // DLQ
+    public static final String FILA_EMAIL_DLQ = "fila.email.dlq";
+
+    public static final String EXCHANGE_EMAIL_DLQ = "exchange.email.dlq";
+
+    public static final String ROUTING_KEY_EMAIL_DLQ = "routing.email.dlq";
+
 }
 

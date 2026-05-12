@@ -45,6 +45,13 @@ public class EmailConsumer {
         log.info(
                 "PROCESSAMENTO FINALIZADO"
         );
+
+        if (emailRequestDTO.email().contains("erro")) {
+
+            throw new RuntimeException(
+                    "ERRO SIMULADO"
+            );
+        }
     }
 
 }
